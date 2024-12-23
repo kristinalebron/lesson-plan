@@ -1,0 +1,265 @@
+<!-- View Lesson Page -->
+<header>
+    <div>Catapult Learning</div>
+    <nav>
+        <a href="index.html">Lesson Plans</a>
+        <a href="#">Attendance</a>
+        <a href="#">Grades</a>
+        <a href="#">Report Cards</a>
+        <a href="#">Rosters</a>
+    </nav>
+</header>
+<div class="lesson-container">
+    <div class="lesson-box">
+        <h2>Lesson Name</h2>
+        <p>Date: <strong>12/21/2024</strong></p>
+        <h3>Objectives</h3>
+        <textarea placeholder="Enter lesson objectives here..."></textarea>
+
+        <h3>Materials</h3>
+        <textarea placeholder="Enter materials needed here..."></textarea>
+
+        <h3>Lesson</h3>
+        <textarea placeholder="Enter lesson plan details here..."></textarea>
+
+        <h3>Notes</h3>
+        <textarea placeholder="Enter any additional notes here..."></textarea>
+    </div>
+
+    <div class="attendance-box">
+        <h3>Attendance and Scores</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Attendance</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Olivia Carter</td>
+                    <td>
+                        <span class="circle present">P</span>
+                        <span class="circle absent hollow">A</span>
+                    </td>
+                    <td class="score">85</td>
+                </tr>
+                <tr>
+                    <td>Ethan Morgan</td>
+                    <td>
+                        <span class="circle present">P</span>
+                        <span class="circle absent hollow">A</span>
+                    </td>
+                    <td class="score">90</td>
+                </tr>
+                <tr>
+                    <td>Ava Bennett</td>
+                    <td>
+                        <span class="circle present">P</span>
+                        <span class="circle absent hollow">A</span>
+                    </td>
+                    <td class="score">75</td>
+                </tr>
+                <tr>
+                    <td>Liam Reed</td>
+                    <td>
+                        <span class="circle present hollow">P</span>
+                        <span class="circle absent">A</span>
+                    </td>
+                    <td class="score">65</td>
+                </tr>
+                <tr>
+                    <td>Sophia Clarke</td>
+                    <td>
+                        <span class="circle present">P</span>
+                        <span class="circle absent hollow">A</span>
+                    </td>
+                    <td class="score">92</td>
+                </tr>
+                <tr>
+                    <td>Noah Hunter</td>
+                    <td>
+                        <span class="circle present hollow">P</span>
+                        <span class="circle absent">A</span>
+                    </td>
+                    <td class="score">80</td>
+                </tr>
+                <tr>
+                    <td>Emma Dawson</td>
+                    <td>
+                        <span class="circle present">P</span>
+                        <span class="circle absent hollow">A</span>
+                    </td>
+                    <td class="score">88</td>
+                </tr>
+                <tr>
+                    <td>Lucas Hayes</td>
+                    <td>
+                        <span class="circle present">P</span>
+                        <span class="circle absent hollow">A</span>
+                    </td>
+                    <td class="score">78</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #1c1a54; /* Accent color */
+    color: white;
+}
+
+header nav {
+    display: flex;
+    gap: 1rem;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.lesson-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.lesson-box {
+    flex: 3;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+    margin-bottom: 15px;
+}
+
+.attendance-box {
+    flex: 2;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-box h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Attendance Circles */
+.circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    margin: 0 5px;
+    color: white;
+}
+
+.present {
+    background-color: #8dc63f;
+    border-color: #8dc63f;
+}
+
+.absent {
+    background-color: #f44336;
+    border-color: #f44336;
+}
+
+.hollow {
+    background-color: transparent;
+    color: black;
+}
+
+.present.hollow {
+    border-color: #8dc63f;
+    color: #8dc63f;
+}
+
+.absent.hollow {
+    border-color: #f44336;
+    color: #f44336;
+}
+
+/* Score Squares */
+.score {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.score:hover {
+    border-color: #8dc63f;
+    background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .lesson-container {
+        flex-direction: column;
+    }
+
+    .lesson-box, .attendance-box {
+        flex: unset;
+        width: 100%;
+    }
+}
+
+</style>

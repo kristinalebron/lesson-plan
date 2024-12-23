@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #1c1a54; /* Accent color */
+            color: white;
+        }
+
+        header nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .calendar-container {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .view-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .view-selector button {
+            background-color: #06aeef; /* Secondary color */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .view-selector button.active {
+            background-color: #8dc63f; /* Primary color */
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .day {
+            background-color: #d9d9d9;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .day.active {
+            background-color: #8dc63f; /* Primary color */
+            color: white;
+        }
+
+        .day-details {
+            text-align: left;
+        }
+
+        .day-details h3 {
+            color: #1c1a54;
+        }
+
+        .day-details button {
+            background-color: #06aeef;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Week view updates */
+        .week-view-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 days (Mon-Fri) */
+            gap: 1rem;
+            justify-items: center;
+        }
+
+        .week-day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .week-day-details {
+            text-align: left;
+        }
+
+        .week-day-details h3 {
+            color: #1c1a54;
+        }
+
+        .week-day-details button {
+            background-color: #06aeef;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Centered card for day view */
+        .day-view-card {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .class-1 { background-color: #ffdddd; }
+        .class-2 { background-color: #ffefdd; }
+        .class-3 { background-color: #e8f7e8; }
+        .class-4 { background-color: #ddf7ff; }
+        .class-5 { background-color: #f7f7dd; }
+        .class-6 { background-color: #f2e8ff; }
+        .class-7 { background-color: #ffe8e8; }
+    </style>
+</head>
+<body>
+    <header>
+        <div>Catapult Learning</div>
+        <nav>
+            <a href="#">Lesson Plans</a>
+            <a href="#">Attendance</a>
+            <a href="#">Grades</a>
+            <a href="#">Report Cards</a>
+            <a href="#">Rosters</a>
+        </nav>
+    </header>
+
+    <div class="calendar-container">
+        <div class="view-selector">
+            <button id="month-view" class="active" onclick="switchView('month')">Month</button>
+            <button id="week-view" onclick="switchView('week')">Week</button>
+            <button id="day-view" onclick="switchView('day')">Day</button>
+        </div>
+
+        <div id="calendar">
+            <!-- Default view (Month) -->
+            <div class="calendar" id="month-view-container">
+                <div class="day class-1" onclick="switchToDayView(1)">1</div>
+                <div class="day class-2" onclick="switchToDayView(2)">2</div>
+                <div class="day class-3" onclick="switchToDayView(3)">3</div>
+                <div class="day class-4" onclick="switchToDayView(4)">4</div>
+                <div class="day class-5" onclick="switchToDayView(5)">5</div>
+                <div class="day class-6" onclick="switchToDayView(6)">6</div>
+                <div class="day class-7" onclick="switchToDayView(7)">7</div>
+                <div class="day class-1" onclick="switchToDayView(8)">8</div>
+                <div class="day class-2" onclick="switchToDayView(9)">9</div>
+                <div class="day class-3" onclick="switchToDayView(10)">10</div>
+                <div class="day class-4" onclick="switchToDayView(11)">11</div>
+                <div class="day class-5" onclick="switchToDayView(12)">12</div>
+                <div class="day class-6" onclick="switchToDayView(13)">13</div>
+                <div class="day class-7" onclick="switchToDayView(14)">14</div>
+                <div class="day class-1" onclick="switchToDayView(15)">15</div>
+                <div class="day class-2" onclick="switchToDayView(16)">16</div>
+                <div class="day class-3" onclick="switchToDayView(17)">17</div>
+                <div class="day class-4" onclick="switchToDayView(18)">18</div>
+                <div class="day class-5" onclick="switchToDayView(19)">19</div>
+                <div class="day class-6" onclick="switchToDayView(20)">20</div>
+                <div class="day class-7" onclick="switchToDayView(21)">21</div>
+                <div class="day class-1" onclick="switchToDayView(22)">22</div>
+                <div class="day class-2" onclick="switchToDayView(23)">23</div>
+                <div class="day class-3" onclick="switchToDayView(24)">24</div>
+                <div class="day class-4" onclick="switchToDayView(25)">25</div>
+                <div class="day class-5" onclick="switchToDayView(26)">26</div>
+                <div class="day class-6" onclick="switchToDayView(27)">27</div>
+                <div class="day class-7" onclick="switchToDayView(28)">28</div>
+                <div class="day class-1" onclick="switchToDayView(29)">29</div>
+                <div class="day class-2" onclick="switchToDayView(30)">30</div>
+            </div>
+
+            <!-- Week View -->
+            <div class="calendar week-view-container" id="week-view-container" style="display: none;">
+                <div class="week-day class-1">
+                    <div class="day" onclick="switchToDayView(1)">Monday</div>
+                    <div class="week-day-details">
+                        <h3>Attendance</h3>
+                        <button>View Attendance</button>
+                        <h3>Grades</h3>
+                        <button>View Grades</button>
+                        <h3>Lesson</h3>
+                        <button>View Lesson</button>
+                    </div>
+                </div>
+                <div class="week-day class-2">
+                    <div class="day" onclick="switchToDayView(2)">Tuesday</div>
+                    <div class="week-day-details">
+                        <h3>Attendance</h3>
+                        <button>View Attendance</button>
+                        <h3>Grades</h3>
+                        <button>View Grades</button>
+                        <h3>Lesson</h3>
+                        <button>View Lesson</button>
+                    </div>
+                </div>
+                <div class="week-day class-3">
+                    <div class="day" onclick="switchToDayView(3)">Wednesday</div>
+                    <div class="week-day-details">
+                        <h3>Attendance</h3>
+                        <button>View Attendance</button>
+                        <h3>Grades</h3>
+                        <button>View Grades</button>
+                        <h3>Lesson</h3>
+                        <button>View Lesson</button>
+                    </div>
+                </div>
+                <div class="week-day class-4">
+                    <div class="day" onclick="switchToDayView(4)">Thursday</div>
+                    <div class="week-day-details">
+                        <h3>Attendance</h3>
+                        <button>View Attendance</button>
+                        <h3>Grades</h3>
+                        <button>View Grades</button>
+                        <h3>Lesson</h3>
+                        <button>View Lesson</button>
+                    </div>
+                </div>
+                <div class="week-day class-5">
+                    <div class="day" onclick="switchToDayView(5)">Friday</div>
+                    <div class="week-day-details">
+                        <h3>Attendance</h3>
+                        <button>View Attendance</button>
+                        <h3>Grades</h3>
+                        <button>View Grades</button>
+                        <h3>Lesson</h3>
+                        <button>View Lesson</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day View -->
+            <div class="day-view-card" id="day-view-container" style="display: none;">
+                <h2>Day Details</h2>
+                <div class="day-details">
+                    <ul class="class-list">
+                        <li>
+                            Class 1 
+                            <button onclick="window.location.href='lesson.html'" class="view-lesson-button">View Lesson</button>
+                        </li>
+                        <li>
+                            Class 2 
+                            <button onclick="window.location.href='lesson.html'" class="view-lesson-button">View Lesson</button>
+                        </li>
+                        <li>
+                            Class 3 
+                            <button onclick="window.location.href='lesson.html'" class="view-lesson-button">View Lesson</button>
+                        </li>
+                        <li>
+                            Class 4 
+                            <button onclick="window.location.href='lesson.html'" class="view-lesson-button">View Lesson</button>
+                        </li>
+                        <li>
+                            Class 5 
+                            <button onclick="window.location.href='lesson.html'" class="view-lesson-button">View Lesson</button>
+                        </li>
+                        <li>
+                            Class 6 
+                            <button onclick="window.location.href='lesson.html'" class="view-lesson-button">View Lesson</button>
+                        </li>
+                        <li>
+                            Class 7 
+                            <button onclick="window.location.href='lesson.html'" class="view-lesson-button">View Lesson</button>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchView(view) {
+            // Hide all views
+            document.getElementById('month-view-container').style.display = 'none';
+            document.getElementById('week-view-container').style.display = 'none';
+            document.getElementById('day-view-container').style.display = 'none';
+
+            // Show selected view
+            if (view === 'month') {
+                document.getElementById('month-view-container').style.display = 'grid';
+                document.getElementById('month-view').classList.add('active');
+                document.getElementById('week-view').classList.remove('active');
+                document.getElementById('day-view').classList.remove('active');
+            } else if (view === 'week') {
+                document.getElementById('week-view-container').style.display = 'grid';
+                document.getElementById('week-view').classList.add('active');
+                document.getElementById('month-view').classList.remove('active');
+                document.getElementById('day-view').classList.remove('active');
+            } else if (view === 'day') {
+                document.getElementById('day-view-container').style.display = 'block';
+                document.getElementById('day-view').classList.add('active');
+                document.getElementById('month-view').classList.remove('active');
+                document.getElementById('week-view').classList.remove('active');
+            }
+        }
+
+        function switchToDayView(day) {
+            switchView('day');
+            // Update the day view details with the selected day
+            document.querySelector('#day-view-container h2').textContent = `Day ${day} Details`;
+        }
+    </script>
+</body>
+</html>
